@@ -123,3 +123,55 @@ const json = await res.json();
 
 await writeFile('london-weather.json', JSON.stringify(json, null, 2));
 ```
+
+## A Complete TypeScript Usage Example
+
+```ts
+
+export interface WeatherResponse {
+  location: {
+    name: string;
+    country: string;
+    lat: number;
+    lon: number;
+    timezone: string;
+  };
+  weather: {
+    time: string;
+    temperature_2m: number;
+    weather_code: number;
+    wind_speed_10m: number;
+  };
+  provider: string;
+}
+
+export async function getWeather(city: string, country: string): Promise<WeatherResponse> {
+  const url = new URL('https://weather-microservice-phi.vercel.app/weather');
+  url.searchParams.set('city', city);
+  url.searchParams.set('country', country);
+
+  const response = await fetch(url.toString());
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.error || 'Weather service error');
+  }
+
+  const data: WeatherResponse = await response.json();
+  return data;
+}
+
+async function testWeatherQuery() {
+  try {
+    const data = await getWeather('Portland', 'US');
+    console.log('Weather Data:', JSON.stringify(data, null, 2));
+  }
+
+  catch (err: any) {
+    console.error('Error:', err.message);
+  }
+}
+
+testWeatherQuery();
+
+```
