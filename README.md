@@ -175,3 +175,7 @@ async function testWeatherQuery() {
 testWeatherQuery();
 
 ```
+
+## UML Class Diagram
+<img width="3840" height="1267" alt="Untitled diagram _ Mermaid Chart-2025-08-05-035404" src="https://github.com/user-attachments/assets/c8031845-e67a-4f22-bf47-434b4af093d9" />
+
