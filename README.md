@@ -1,4 +1,4 @@
-# 🌤️ Weather Microservice
+# Weather Microservice
 
 This is a standalone weather microservice that returns **current weather** (in Celsius) and **location metadata** in `JSON` format, given a `city` and `country` code.
 
@@ -6,7 +6,7 @@ It is deployed publicly and accessible via an HTTP `GET` request.
 
 ---
 
-## 🔗 Live Endpoint
+## Live Endpoint
 
 ```
 https://weather-microservice-phi.vercel.app/weather
@@ -14,9 +14,9 @@ https://weather-microservice-phi.vercel.app/weather
 
 ---
 
-## 🧾 How to Use
+## How to Use
 
-### 📥 Request
+### Request
 
 **Method:** `GET`  
 **Endpoint:** `/weather`  
@@ -35,7 +35,7 @@ GET https://weather-microservice-phi.vercel.app/weather?city=Portland&country=US
 
 ---
 
-### 📤 Response
+### Response
 
 If the request is valid, the response will be a JSON object with the following structure:
 
@@ -60,7 +60,7 @@ If the request is valid, the response will be a JSON object with the following s
 
 ---
 
-## 🧠 Expected Query Structure
+## Expected Query Structure
 
 The microservice **requires** both of the following:
 
@@ -77,7 +77,7 @@ If either field is missing or invalid, the service will return an error like:
 
 ---
 
-## 🚫 Error Handling
+## Error Handling
 
 | Status Code | Description                          | Example Message                  |
 |-------------|--------------------------------------|----------------------------------|
@@ -87,7 +87,7 @@ If either field is missing or invalid, the service will return an error like:
 
 ---
 
-## 🛠️ Technology Stack
+## Tech Stack
 
 - **Node.js** (18+) with native `fetch`
 - **Express.js** backend
@@ -97,7 +97,7 @@ If either field is missing or invalid, the service will return an error like:
 
 ---
 
-## 🤖 Example Usage in TypeScript
+## Example Usage in TypeScript
 
 ```ts
 const url = new URL('https://weather-microservice-phi.vercel.app/weather');
@@ -111,7 +111,7 @@ console.log(data);
 
 ---
 
-## 📂 Sample Response File
+## Sample Response File
 
 You can also save the response locally using `fs/promises` (Node.js):
 
@@ -123,11 +123,3 @@ const json = await res.json();
 
 await writeFile('london-weather.json', JSON.stringify(json, null, 2));
 ```
-
----
-
-## 🧩 Future Ideas
-
-- Add support for 7-day forecasts
-- Support full country name resolution
-- Optional unit conversion (Celsius ↔ Fahrenheit)
