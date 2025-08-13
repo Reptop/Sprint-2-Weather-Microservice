@@ -2,7 +2,7 @@
 
 This is a standalone weather microservice that returns **current weather** (in Celsius) and **location metadata** in `JSON` format, given a `city` and `country` code.
 
-It is deployed publicly and accessible via an HTTP `GET` request.
+It is deployed publicly and accessible via an HTTP `GET` request. 
 
 ---
 
@@ -127,6 +127,7 @@ await writeFile('london-weather.json', JSON.stringify(json, null, 2));
 ## A Complete TypeScript Usage Example
 
 ```ts
+// this was broken before but not now i think...
 
 export interface WeatherResponse {
   location: {
