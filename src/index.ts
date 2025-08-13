@@ -2,6 +2,19 @@ import express from 'express';
 
 const app = express();
 
+// --- CORS (allow all) ---
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');              // any origin
+  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Accept,X-Requested-With');
+
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(204);
+  }
+  next();
+});
+// --- end CORS ---
+
 app.get('/weather', async (req, res) => {
   const city = String(req.query.city || '').trim();
   const country = String(req.query.country || '').trim().toUpperCase();
@@ -29,8 +42,8 @@ app.get('/weather', async (req, res) => {
 
     // Weather
     const wxUrl = new URL('https://api.open-meteo.com/v1/forecast');
-    wxUrl.searchParams.set('latitude', best.latitude);
-    wxUrl.searchParams.set('longitude', best.longitude);
+    wxUrl.searchParams.set('latitude', String(best.latitude));
+    wxUrl.searchParams.set('longitude', String(best.longitude));
     wxUrl.searchParams.set('current', 'temperature_2m,weather_code,wind_speed_10m');
     wxUrl.searchParams.set('timezone', best.timezone ?? 'auto');
 
@@ -53,10 +66,8 @@ app.get('/weather', async (req, res) => {
   }
 });
 
-// ✅ Required for Vercel Serverless
 export default app;
 
-// ✅ Optional: Local dev mode
 if (process.env.NODE_ENV !== 'production') {
   const PORT = process.env.PORT || 3000;
   app.listen(PORT, () => {
